@@ -1,4 +1,4 @@
-# VaultBuddy
+# VaultBuddyMobile
 Destiny 2 inventory management app
  
 Date Started: 1/25/2021<br>
