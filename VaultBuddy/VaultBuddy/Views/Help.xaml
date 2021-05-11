@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?><!--27 lines-->
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VaultBuddy.Views.Help"
+             IconImageSource="settings.png">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="" />
+            <Image Source="icon.png" HeightRequest="80" WidthRequest="80" />
+            <Label Margin="20" Text="VaultBuddy is an independent, third-party application created by
+                   Chais Strand, Austin Schuster, and Luke Nicolaisen."
+                   TextColor="LightGray" FontSize="24" FontFamily="jervReg" />
+            <Label Margin="20, 10, 20, 40" Text="For help, contact us at: &#10;&#x2022; chais.strand@southeasttech.edu
+                   &#10;&#x2022; austin.schuster@southeasttech.edu
+                   &#10;&#x2022; luke.nicolaisen@southeasttech.edu"
+                   TextColor="LightGray" FontSize="24" FontFamily="jervReg" />
+            <Button HorizontalOptions="Center" WidthRequest="200" Text="Logout" FontFamily="titiReg"
+                    FontSize="26" TextTransform="None" Command="{Binding btnLogout}" />
+            <Label Margin="20, 50, 20, 5" HorizontalTextAlignment="Center"
+                   Text="VaultBuddy connects to Destiny using the Bungie API, approval granted by Bungie, Inc."
+                   TextColor="LightGray" FontSize="16" FontFamily="jervReg" />
+            <Label Margin="20, 5, 20, 5" HorizontalTextAlignment="Center"
+                   Text="Authentication powered by OAuth 2.0"
+                   TextColor="LightGray" FontSize="16" FontFamily="jervReg" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

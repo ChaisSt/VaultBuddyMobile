@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?><!--53 lines-->
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VaultBuddy.Views.Favorites"
+             IconImageSource="heart.png">
+
+
+    <ContentPage.Resources>
+        <Style TargetType="ImageButton">
+            <Setter Property="HorizontalOptions" Value="Start"/>
+            <Setter Property="Margin" Value="0,0,10,0"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="White"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <StackLayout>
+        <Label Text="Favorite Items" 
+               HorizontalOptions="StartAndExpand" 
+               FontSize="44" FontFamily="titiReg"
+               Margin="10,0,0,0"/>
+        <CollectionView x:Name="favoriteCollection"  
+                        SelectionMode="Single" 
+                        WidthRequest="300" HeightRequest="1000" 
+                        SelectionChanged="itemsCollection_SelectionChanged" 
+                        ItemsSource="{Binding FavoriteItems}" IsGrouped="True" 
+                        ItemsLayout="VerticalGrid, 3">
+            <CollectionView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <StackLayout Orientation="Horizontal">
+                        <Label x:Name="lblItemType" Text="{Binding Type}" 
+                                                   FontFamily="titiReg" FontSize="28" 
+                                                   HorizontalOptions="FillAndExpand" 
+                                                   Padding="5,-3,5,0" BackgroundColor="#77777777"/>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.GroupHeaderTemplate>
+            
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="5" x:Name="Item">
+                        <Image Source="{Binding ItemIcon}" HeightRequest="125" Aspect="AspectFit" />
+                        <Image Source="{Binding Favorite}" HeightRequest="25" HorizontalOptions="End" VerticalOptions="Start"/>
+                        <Label Text="{Binding ItemLight}" FontSize="22" VerticalOptions="End" HorizontalOptions="End" Padding="0,-5" BackgroundColor="#77282826" FontFamily="titiReg"/>
+                        <Image Source="{Binding IconWM}" VerticalOptions="Start" HeightRequest="125" WidthRequest="125" Aspect="AspectFill" BackgroundColor="Transparent"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+    </StackLayout>
+</ContentPage>

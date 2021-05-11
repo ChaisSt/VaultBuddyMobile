@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8" ?><!--187 lines-->
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="VaultBuddy.Views.MainPage"
+             IconImageSource="menu.png">
+    
+    <ContentPage.Resources>
+        <Style TargetType="ImageButton">
+            <Setter Property="HorizontalOptions" Value="Start"/>
+            <Setter Property="Margin" Value="0,0,10,0"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="White"/>
+        </Style>
+    </ContentPage.Resources>
+ 
+    <Grid>
+        <SwipeView x:Name="SwipeMenu">
+            
+            <SwipeView.LeftItems>
+                <SwipeItemView>
+                    <Grid WidthRequest="82">
+                        <Frame BackgroundColor="#525252" Padding="0">
+                            <ScrollView>
+                                <StackLayout Spacing="-15.5" Margin="0,-13,0,0">
+                                    <ImageButton Source="all.png" BackgroundColor="#525252" 
+                                                 Clicked="FilterButton_Clicked" 
+                                                 Command="{Binding Filter}" 
+                                                 CommandParameter="All" />
+                                    <ImageButton Source="vault1_5.png" BackgroundColor="#525252" 
+                                                 Clicked="FilterButton_Clicked" 
+                                                 Command="{Binding Filter}" 
+                                                 CommandParameter="Vault"/>
+                                    <ImageButton Source="backpack.png" BackgroundColor="#525252" 
+                                                 Clicked="FilterButton_Clicked" 
+                                                 Command="{Binding Filter}" 
+                                                 CommandParameter="Equipped"/>
+                                    <ImageButton Source="crosshair.png" BackgroundColor="#525252"
+                                                 Clicked="FilterButton_Clicked" 
+                                                 Command="{Binding Filter}" 
+                                                 CommandParameter="Kinetic Weapons"/>
+                                    <ImageButton Source="energy3.png" BackgroundColor="#525252" 
+                                                 Clicked="FilterButton_Clicked" 
+                                                 Command="{Binding Filter}" 
+                                                 CommandParameter="Energy Weapons"/>
+                                    <ImageButton Source="power2.png" BackgroundColor="#525252" 
+                                                 Clicked="FilterButton_Clicked" 
+                                                 Command="{Binding Filter}" 
+                                                 CommandParameter="Power Weapons"/>
+                                    <ImageButton Source="Shield.png" BackgroundColor="#525252" 
+                                                 Clicked="FilterButton_Clicked" 
+                                                 Command="{Binding Filter}" 
+                                                 CommandParameter="Armor"/>
+                                    <ImageButton Source="ghost.png" BackgroundColor="#525252" 
+                                                 Clicked="FilterButton_Clicked" 
+                                                 Command="{Binding Filter}" 
+                                                 CommandParameter="Ghost"/>
+                                    <ImageButton Source="sparrow.png" BackgroundColor="#525252" 
+                                                 Clicked="FilterButton_Clicked" 
+                                                 Command="{Binding Filter}" 
+                                                 CommandParameter="Vehicle"/>
+                                    <ImageButton Source="ship.png" BackgroundColor="#525252" 
+                                                 Clicked="FilterButton_Clicked" 
+                                                 Command="{Binding Filter}" 
+                                                 CommandParameter="Ships"/>
+                                </StackLayout>
+                            </ScrollView>
+                        </Frame>
+                    </Grid>
+                </SwipeItemView>
+            </SwipeView.LeftItems>
+            
+            <Grid>
+                <StackLayout>
+                    <SwipeView x:Name="SwipeMenuTop">
+                        
+                        <SwipeView.TopItems>
+                            <SwipeItems SwipeBehaviorOnInvoked="RemainOpen">
+                                <SwipeItemView>
+                                    <Grid HeightRequest="40" Margin="0,3,0,0">
+                                        <Frame BackgroundColor="Transparent" Padding="0">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Switch x:Name="UncommonSwitch" 
+                                                        Toggled="UncommonSwitch_Toggled" 
+                                                        OnColor="green" 
+                                                        ThumbColor="LightGreen" 
+                                                        IsToggled="True" 
+                                                        Margin="20,5" Scale="1.65"/>
+                                                <Switch x:Name="RareSwitch" 
+                                                        Toggled="RareSwitch_Toggled" 
+                                                        OnColor="#72bcd4" 
+                                                        ThumbColor="#c5e3ed" 
+                                                        IsToggled="True" 
+                                                        Margin="20,5" Scale="1.65"/>
+                                                <Switch x:Name="LegendSwitch" 
+                                                        Toggled="LegendSwitch_Toggled" 
+                                                        OnColor="Purple" 
+                                                        ThumbColor="Plum" 
+                                                        IsToggled="True" 
+                                                        Margin="20,5" Scale="1.65"/>
+                                                <Switch x:Name="ExoticSwitch" 
+                                                        Toggled="ExoticSwitch_Toggled" 
+                                                        OnColor="Gold" 
+                                                        ThumbColor="LightYellow" 
+                                                        IsToggled="True" 
+                                                        Margin="20,5" Scale="1.65"/>
+                                            </StackLayout>
+                                        </Frame>
+                                    </Grid>
+                                </SwipeItemView>
+                            </SwipeItems>
+                        </SwipeView.TopItems>
+
+                        <StackLayout>
+                            <StackLayout Orientation="Horizontal" Margin="0">
+                                <ImageButton x:Name="leftTab" 
+                                             HorizontalOptions="Start" 
+                                             Source="tabPull.png" 
+                                             BackgroundColor="Transparent" 
+                                             Aspect="AspectFit" 
+                                             Margin="-20,0,0,0" 
+                                             Padding="0" 
+                                             WidthRequest="65" 
+                                             Clicked="LeftFilterButton_Clicked"/>
+                                <Label Text="{Binding Title}" 
+                                       HorizontalOptions="CenterAndExpand" 
+                                       FontSize="44" 
+                                       FontFamily="titiReg" 
+                                       Margin="-40,0,0,0"/>
+                                <ImageButton HorizontalOptions="End" 
+                                             VerticalOptions="Start" 
+                                             Margin="5" 
+                                             Source="filter.png" 
+                                             BackgroundColor="Transparent" 
+                                             WidthRequest="25" 
+                                             Clicked="TopFilterButton_Clicked"/>
+                            </StackLayout>
+                            <Label Text="{Binding lblInfo}" IsVisible="False"/>
+                        </StackLayout>
+                    </SwipeView>
+                    
+                    <ScrollView>
+                        <StackLayout>
+                            <CollectionView x:Name="itemsCollection" SelectionMode="Single" 
+                                            WidthRequest="300" HeightRequest="1000" 
+                                            SelectionChanged="itemsCollection_SelectionChanged" 
+                                            ItemsSource="{Binding FilteredItems}" IsGrouped="True" 
+                                            ItemsLayout="VerticalGrid, 3">
+                                
+                                <CollectionView.GroupHeaderTemplate>
+                                    <DataTemplate>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label x:Name="lblItemType" Text="{Binding Type}" 
+                                                   FontFamily="titiReg" FontSize="28" 
+                                                   HorizontalOptions="FillAndExpand" 
+                                                   Padding="5,-3,5,0" BackgroundColor="#77777777"/>
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </CollectionView.GroupHeaderTemplate>
+
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Padding="5" x:Name="Item">
+                                            <Image Source="{Binding ItemIcon}" HeightRequest="125" 
+                                                   Aspect="AspectFit" />
+                                            <Image Source="{Binding Favorite}" HeightRequest="25" 
+                                                   HorizontalOptions="End" VerticalOptions="Start"
+                                                   x:Name="FavoriteIcon"/>
+                                            <Label Text="{Binding ItemLight}" FontSize="22" 
+                                                   VerticalOptions="End" HorizontalOptions="End" 
+                                                   Padding="0,-5" BackgroundColor="#77282826" 
+                                                   FontFamily="titiReg"/>
+                                            <Image Source="{Binding IconWM}" VerticalOptions="Start" 
+                                                   HeightRequest="125" WidthRequest="125" 
+                                                   Aspect="AspectFill" BackgroundColor="Transparent"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </StackLayout>
+                    </ScrollView>
+                    
+                </StackLayout>
+            </Grid>
+        </SwipeView>
+    </Grid>
+</ContentPage>

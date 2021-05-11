@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?><!--163 lines-->
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VaultBuddy.Views.Search" Shell.NavBarHasShadow="False"
+             IconImageSource="search.png">
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="LightGray"/>
+            <Setter Property="FontFamily" Value="jervReg"/>
+            <Setter Property="FontSize" Value="22"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <StackLayout>
+        <StackLayout Orientation="Horizontal" Margin="0,-2,0,-35">
+            <Entry x:Name="SearchInput" HorizontalOptions="FillAndExpand" 
+                   Margin="0,0,-6,0" BackgroundColor="White" 
+                   Placeholder="Search a Player..."/>
+            <Button Text="Search" Clicked="Button_Clicked"
+                    Margin="-6,0,0,0" HorizontalOptions="End"/>
+        </StackLayout>
+        <Label Text="{Binding lblInfo}" TextColor="White" Grid.Row="1"/>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <StackLayout Margin="0,1" Grid.Row="0" Grid.Column="0">
+                <CollectionView ItemsSource="{Binding PlayerItems}" x:Name="PlayerSearch" 
+                                 IsGrouped="True" ItemsLayout="VerticalGrid, 3">
+
+                    <CollectionView.GroupHeaderTemplate>
+                        <DataTemplate>
+                            <Grid HeightRequest="100">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="2*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width=".4*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Source="{Binding Character.EmblemBG}" 
+                                       Margin="0,10,0,0"
+                                       Grid.Column="0" Grid.ColumnSpan="3"
+                                       Grid.Row="0" Grid.RowSpan="2" 
+                                       HorizontalOptions="FillAndExpand"/>
+                                <Label Text="{Binding Character.Class}" 
+                                       TextColor="White" FontSize="26"
+                                       Margin="5,20"
+                                       Grid.Column="1" Grid.Row="0"/>
+                                
+                                <StackLayout Orientation="Horizontal" 
+                                             Grid.Row="0" Grid.Column="2" 
+                                             Margin="15" HorizontalOptions="End">
+                                    <Label Text="✧" TextColor="Yellow" 
+                                           FontSize="16" Margin="0,7,-7,0"/>
+                                    <Label Text="{Binding Character.Light}"
+                                            TextColor="Yellow" HorizontalOptions="End" 
+                                            FontSize="30" FontFamily=""/>
+                                </StackLayout>
+                                
+                                <Label Text="{Binding Character.Race}" 
+                                       TextColor="LightGray"
+                                       FontSize="18"
+                                       Margin="5,-20"
+                                       Grid.Column="1" Grid.Row="1"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.GroupHeaderTemplate>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="5" x:Name="Item">
+                                <Image Source="{Binding ItemIcon}" HeightRequest="125" Aspect="AspectFit" />
+                                <Image Source="{Binding Favorite}" HeightRequest="25" 
+                                       HorizontalOptions="End" VerticalOptions="Start"
+                                       x:Name="FavoriteIcon"/>
+                                <Label Text="{Binding ItemLight}" FontSize="22" 
+                                       VerticalOptions="End" HorizontalOptions="End" 
+                                       Padding="0,-5" BackgroundColor="#77282826" 
+                                       FontFamily="titiReg"/>
+                                <Image Source="{Binding IconWM}" VerticalOptions="Start" 
+                                       HeightRequest="125" WidthRequest="125" 
+                                       Aspect="AspectFill" BackgroundColor="Transparent"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+
+                </CollectionView>
+            </StackLayout>
+
+        </Grid>
+    </StackLayout>
+</ContentPage>

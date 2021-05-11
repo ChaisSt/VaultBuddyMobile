@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?><!--35 lines-->
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VaultBuddy.Views.oAuthPage" Shell.NavBarIsVisible="False">
+    <ContentPage.Content>
+
+        <Grid ColumnSpacing="0" RowSpacing="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".5*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width=".5*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2.5*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height=".5*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="1.5*"/>
+            </Grid.RowDefinitions>
+            <StackLayout x:Name="LoadingOverlay" IsVisible="{Binding Loading}" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" Grid.RowSpan="7" VerticalOptions="Center" HorizontalOptions="Center">
+                <Image Source="splash.png" WidthRequest="500" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                <Label Text="Loading..." FontSize="50" TextColor="White" HorizontalOptions="Center" FontFamily="titiReg"/>
+            </StackLayout>
+            <Label x:Name="Label1" IsVisible="{Binding LoadingOther}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" HorizontalTextAlignment="Center" TextColor="white" Text="Welcome to VaultBuddy"  FontSize="55" FontFamily="jervReg"/>
+            <Label x:Name="Label2" IsVisible="{Binding LoadingOther}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" HorizontalTextAlignment="Center" Text="We need your permission!" TextColor="LightGray" FontSize="28" FontFamily="jervReg"/>
+            <Label x:Name="Label3" IsVisible="{Binding LoadingOther}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" HorizontalTextAlignment="Center" TextColor="LightGray" Text="Tap the button below to authorize our use of your information" FontSize="24" FontFamily="jervReg" Padding="10,0,10,0"/>
+            <Button x:Name="Button" IsVisible="{Binding LoadingOther}" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Text="Authorize" FontFamily="titiReg" FontSize="26" Command="{Binding btnAuthorize}" TextTransform="None"/>
+            <Label Text="{Binding lblInfo}" TextColor="White"/>
+            
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
